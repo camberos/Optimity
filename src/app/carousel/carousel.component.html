@@ -1,0 +1,35 @@
+<ng-container *ngFor="let slide of slides; let i = index">
+  <div *ngIf="i === currentSlide">
+    <span class="title">
+      {{ slide.title }}
+    </span>
+  </div>
+</ng-container>
+<div class="box carousel">
+  <ng-container *ngFor="let slide of slides; let i = index">
+    <div *ngIf="i === currentSlide">
+      <div class="tiles slide">
+          <div *ngFor="let url of slide.images" class="tile ">
+            <img  class="image"
+              [@slideAnimation]="animationType"
+              [src]="url"
+            />
+          </div>
+      </div>
+    </div>
+  </ng-container>
+  
+  <span [@slideAnimation]="animationType" *ngIf="carouselButtonsStateLeft(currentSlide)">
+    <button class="control prev" (click)="onPreviousClick()">
+      <span class="arrow left"></span>
+    </button>
+  </span>
+
+  <span [@slideAnimation]="animationType" *ngIf="carouselButtonsStateRight(currentSlide)">
+    <button class="control next" (click)="onNextClick()">
+      <span class="arrow right"></span>
+    </button>
+  </span>
+
+</div>
+
